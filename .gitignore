@@ -1,0 +1,43 @@
+# Fichiers générés par Visual Studio
+.vs/
+bin/
+obj/
+
+# Fichiers de sauvegarde
+[Tt]humbs.db
+*.bak
+*~
+
+# Fichiers de publication
+*.publishsettings
+Publish/
+
+# Fichiers de logs
+*.log
+
+
+
+# Fichiers de build MSBuild
+*.msbuild
+*.msbuild.csproj
+*.msbuild.user
+*.sln.docstates
+
+# Dossier de fichiers de test
+TestResults/
+
+# Fichiers de sauvegarde de Visual Studio
+[Bb]ackup([0-9]*)\.*
+
+# Fichiers de cache de Visual Studio
+*.user
+*.suo
+*.cache
+*.tmp
+*.vshost.exe
+/_doc/~$Archi.pptx
+/_res/burst_extract.bin
+/_res/burst_extract_slow.bin
+/_res/burst_extract_toTest.bin
+/_res/single_extract.bin
+/_res/test.csv

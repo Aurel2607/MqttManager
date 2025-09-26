@@ -1,0 +1,35 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MqttManager.MainPage"
+             Title="MQTT Manager">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <!-- Section Serveur -->
+            <Label Text="MQTT Broker" FontAttributes="Bold" />
+            <Entry Placeholder="Port" />
+            <Entry Placeholder="Username" />
+            <Entry Placeholder="Password" IsPassword="True" />
+            <Button Text="Start Broker" />
+            <Button Text="Stop Broker" />
+
+            <!-- Section Client -->
+            <Label Text="MQTT Client" FontAttributes="Bold" />
+            <Entry Placeholder="Topic" />
+            <Entry Placeholder="Payload" />
+            <Button Text="Connect" />
+            <Button Text="Publish" />
+
+            <!-- Liste des messages -->
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="Message reçu ici..." />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
