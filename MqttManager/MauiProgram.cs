@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using MqttManager.Core;
+using MqttManager.Infrastructure;
+using MqttManager.UI.ViewModels;
 
 namespace MqttManager
 {
@@ -18,8 +21,11 @@ namespace MqttManager
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+			builder.Services.AddSingleton<IMqttBrokerService, MqttNetBrokerService>();
+			builder.Services.AddSingleton<MainViewModel>();
+			builder.Services.AddSingleton<MainPage>();
 
-            return builder.Build();
+			return builder.Build();
         }
     }
 }

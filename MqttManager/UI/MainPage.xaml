@@ -1,0 +1,50 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MqttManager.MainPage"
+             Title="MQTT Manager">
+
+    <ScrollView>
+        <Grid ColumnSpacing="20" RowSpacing="10" Padding="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Section Serveur -->
+            <!-- Broker column -->
+            <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10">
+                <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold"/>
+                <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
+                <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
+                <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
+                <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
+            </VerticalStackLayout>
+
+            <!-- Client column -->
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="10">
+                <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold"/>
+                <Entry Placeholder="Topic"/>
+                <Entry Placeholder="Payload"/>
+                <Button Text="Connect" HorizontalOptions="Fill"/>
+                <Button Text="Publish" HorizontalOptions="Fill"/>
+            </VerticalStackLayout>
+
+            <!-- Intercepted messages (row 1, spanning 2 columns) -->
+            <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
+                <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold"/>
+                <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
