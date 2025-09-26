@@ -20,6 +20,7 @@ namespace MqttManager.Infrastructure
 		/// Event raised whenever a message is intercepted by the broker
 		/// </summary>
 		public event EventHandler<string>? MessageIntercepted;
+		public event EventHandler<string>? BrokerEvent;
 
 		//------------------------------------------------------------------------------
 		/// \brief Start the broker on the given port (default 1884)
@@ -54,13 +55,27 @@ namespace MqttManager.Infrastructure
 				var topic = args.ApplicationMessage.Topic;
 				var payload = args.ApplicationMessage.ConvertPayloadToString();
 				var message = $"[{topic}] {payload}";
+				var ts = DateTime.Now.ToString("HH:mm:ss");
 
-				// Fire event for ViewModel
-				MessageIntercepted?.Invoke(this, message);
+				MessageIntercepted?.Invoke(this, $"{ts} [MSG] {topic}: {payload}");
 
 				return Task.CompletedTask;
 			};
 
+			// Track client connections
+			_server.ClientConnectedAsync += args =>
+			{
+				var ts = DateTime.Now.ToString("HH:mm:ss");
+				BrokerEvent?.Invoke(this, $"{ts} [CONNECT] Client {args.ClientId}");
+				return Task.CompletedTask;
+			};
+
+			_server.ClientDisconnectedAsync += args =>
+			{
+				var ts = DateTime.Now.ToString("HH:mm:ss");
+				BrokerEvent?.Invoke(this, $"{ts} [DISCONNECT] Client {args.ClientId}");
+				return Task.CompletedTask;
+			};
 
 			await _server.StartAsync();
 			IsRunning = true;

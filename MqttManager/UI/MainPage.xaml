@@ -11,7 +11,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" /> <!-- intercepted messages -->
+                <RowDefinition Height="Auto" /> <!-- broker events -->
             </Grid.RowDefinitions>
 
             <!-- Section Serveur -->
@@ -36,7 +37,18 @@
             <!-- Intercepted messages (row 1, spanning 2 columns) -->
             <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
                 <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold"/>
-                <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200">
+                <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200" VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
+                <Label Text="Broker Events" FontSize="20" FontAttributes="Bold"/>
+                <CollectionView ItemsSource="{Binding BrokerEvents}" HeightRequest="200" VerticalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label Text="{Binding}" />

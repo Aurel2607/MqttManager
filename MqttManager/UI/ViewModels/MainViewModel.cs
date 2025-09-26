@@ -13,7 +13,9 @@ namespace MqttManager.UI.ViewModels
 	public partial class MainViewModel : ObservableObject
 	{
 		private readonly IMqttBrokerService _brokerService;
+
 		public ObservableCollection<string> BrokerMessages { get; } = new();
+		public ObservableCollection<string> BrokerEvents { get; } = new();
 
 		[ObservableProperty]
 		private int brokerPort = 1884;
@@ -37,6 +39,11 @@ namespace MqttManager.UI.ViewModels
 			_brokerService.MessageIntercepted += (s, msg) =>
 			{
 				MainThread.BeginInvokeOnMainThread(() => BrokerMessages.Add(msg));
+			};
+
+			_brokerService.BrokerEvent += (s, evt) =>
+			{
+				MainThread.BeginInvokeOnMainThread(() => BrokerEvents.Add(evt));
 			};
 		}
 

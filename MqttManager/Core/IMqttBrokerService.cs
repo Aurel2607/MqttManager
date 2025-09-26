@@ -23,5 +23,8 @@ namespace MqttManager.Core
 
 		/// \brief Event triggered when a client publishes a message (intercepted by broker)
 		event EventHandler<string>? MessageIntercepted;
+
+		/// \brief Event triggered by broker status changes (client connected/disconnected, started, stopped, etc.)
+		event EventHandler<string>? BrokerEvent;   // << new
 	}
 }
