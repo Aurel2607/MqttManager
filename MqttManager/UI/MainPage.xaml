@@ -41,8 +41,8 @@
 
                 <!-- Ligne 2 : boutons toujours en bas -->
                 <VerticalStackLayout Spacing="10" Grid.Row="2">
-                    <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
-                    <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
+                    <Button Text="Start Broker" Style="{StaticResource InteractiveButton}" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
+                    <Button Text="Stop Broker" Style="{StaticResource InteractiveButton}" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
                 </VerticalStackLayout>
             </Grid>
         </Border>
@@ -61,8 +61,8 @@
 
                 <!-- Ligne 2 : boutons toujours en bas -->
                 <VerticalStackLayout Spacing="10" Grid.Row="2">
-                    <Button Text="Connect" HorizontalOptions="Fill"/>
-                    <Button Text="Publish" HorizontalOptions="Fill"/>
+                    <Button Text="Connect" HorizontalOptions="Fill" Style="{StaticResource InteractiveButton}"/>
+                    <Button Text="Publish" HorizontalOptions="Fill" Style="{StaticResource InteractiveButton}"/>
                 </VerticalStackLayout>
             </Grid>
         </Border>
@@ -85,7 +85,8 @@
                 <!-- Bouton toujours en bas -->
                 <Button Grid.Row="2"
                         Text="Clear Messages"
-                        Command="{Binding ClearBrokerMessagesCommand}" 
+                        Command="{Binding ClearBrokerMessagesCommand}"
+                        Style="{StaticResource InteractiveButton}"
                         HorizontalOptions="Fill"/>
             </Grid>
         </Border>
@@ -112,7 +113,8 @@
                 <!-- Bouton toujours en bas -->
                 <Button Grid.Row="2"
             Text="Clear Events"
-            Command="{Binding ClearBrokerEventsCommand}" 
+            Command="{Binding ClearBrokerEventsCommand}"
+            Style="{StaticResource InteractiveButton}"
             HorizontalOptions="Fill"/>
             </Grid>
         </Border>
