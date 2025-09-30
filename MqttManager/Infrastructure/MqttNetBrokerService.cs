@@ -23,9 +23,9 @@ namespace MqttManager.Infrastructure
 		public event EventHandler<string>? BrokerEvent;
 
 		//------------------------------------------------------------------------------
-		/// \brief Start the broker on the given port (default 1884)
+		/// \brief Start the broker on the given port (default 1883)
 		//------------------------------------------------------------------------------
-		public async Task StartAsync(int port = 1884, string? username = null, string? password = null)
+		public async Task StartAsync(int port = 1883, string? username = null, string? password = null)
 		{
 			if (IsRunning)
 				return;

@@ -44,6 +44,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                <Button Text="Clear Messages" Command="{Binding ClearBrokerMessagesCommand}" />
             </VerticalStackLayout>
             
             <VerticalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
@@ -55,6 +56,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                <Button Text="Clear Events" Command="{Binding ClearBrokerEventsCommand}" />
             </VerticalStackLayout>
 
         </Grid>

@@ -13,7 +13,7 @@ namespace MqttManager.Core
 	public interface IMqttBrokerService
 	{
 		/// \brief Start the MQTT broker with optional authentication
-		Task StartAsync(int port = 1884, string? username = null, string? password = null);
+		Task StartAsync(int port = 1883, string? username = null, string? password = null);
 
 		/// \brief Stop the MQTT broker
 		Task StopAsync();

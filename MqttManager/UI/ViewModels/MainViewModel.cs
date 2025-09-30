@@ -18,7 +18,7 @@ namespace MqttManager.UI.ViewModels
 		public ObservableCollection<string> BrokerEvents { get; } = new();
 
 		[ObservableProperty]
-		private int brokerPort = 1884;
+		private int brokerPort = 1883;
 
 		[ObservableProperty]
 		private string? brokerUsername;
@@ -65,9 +65,23 @@ namespace MqttManager.UI.ViewModels
 		{
 			await _brokerService.StopAsync();
 			BrokerStatus = "Stopped";
+
+			// Clear collections bound to the CollectionView
+			BrokerMessages.Clear();
+			BrokerEvents.Clear();
 		}
 
+		[RelayCommand]
+		private void ClearBrokerMessages()
+		{
+			BrokerMessages.Clear();
+		}
 
+		[RelayCommand]
+		private void ClearBrokerEvents()
+		{
+			BrokerEvents.Clear();
+		}
 
 
 	}
