@@ -15,88 +15,107 @@
     </ContentPage.Resources>
 
     
-    <ScrollView>
-        <Grid ColumnSpacing="20" RowSpacing="10" Padding="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" /> <!-- intercepted messages -->
-                <RowDefinition Height="Auto" /> <!-- broker events -->
-            </Grid.RowDefinitions>
+    <Grid ColumnSpacing="20" RowSpacing="10" Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" /> <!-- intercepted messages -->
+            <RowDefinition Height="*" /> <!-- broker events -->
+        </Grid.RowDefinitions>
 
-            <!-- Section Serveur -->
-            <!-- Broker column -->
-            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GroupBoxBorder}">
-                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
-                    <!-- Ligne 0 : titre -->
-                    <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
+        <!-- Section Serveur -->
+        <!-- Broker column -->
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GroupBoxBorder}">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                <!-- Ligne 0 : titre -->
+                <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
 
-                    <!-- Ligne 1 : contenu principal -->
-                    <VerticalStackLayout Spacing="10" Grid.Row="1">
-                        <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
-                        <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
-                    </VerticalStackLayout>
-
-                    <!-- Ligne 2 : boutons toujours en bas -->
-                    <VerticalStackLayout Spacing="10" Grid.Row="2">
-                        <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
-                        <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
-                    </VerticalStackLayout>
-                </Grid>
-            </Border>
-
-            <!-- Client column -->
-            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource GroupBoxBorder}">
-                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
-                    <!-- Ligne 0 : titre -->
-                    <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
-
-                    <!-- Ligne 1 : contenu principal -->
-                    <VerticalStackLayout Spacing="10" Grid.Row="1">
-                        <Entry Placeholder="Topic"/>
-                        <Entry Placeholder="Payload"/>
-                    </VerticalStackLayout>
-
-                    <!-- Ligne 2 : boutons toujours en bas -->
-                    <VerticalStackLayout Spacing="10" Grid.Row="2">
-                        <Button Text="Connect" HorizontalOptions="Fill"/>
-                        <Button Text="Publish" HorizontalOptions="Fill"/>
-                    </VerticalStackLayout>
-                </Grid>
-            </Border>
-
-            <!-- Intercepted messages (row 1, spanning 2 columns) -->
-            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200" VerticalOptions="FillAndExpand">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Text="{Binding}" />
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button Text="Clear Messages" Command="{Binding ClearBrokerMessagesCommand}" />
+                <!-- Ligne 1 : contenu principal -->
+                <VerticalStackLayout Spacing="10" Grid.Row="1">
+                    <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
+                    <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
                 </VerticalStackLayout>
-            </Border>
 
-            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Broker Events" FontSize="20" FontAttributes="Bold"/>
-                    <CollectionView ItemsSource="{Binding BrokerEvents}" HeightRequest="200" VerticalOptions="FillAndExpand">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Text="{Binding}" />
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button Text="Clear Events" Command="{Binding ClearBrokerEventsCommand}" />
+                <!-- Ligne 2 : boutons toujours en bas -->
+                <VerticalStackLayout Spacing="10" Grid.Row="2">
+                    <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
+                    <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
                 </VerticalStackLayout>
-            </Border>
+            </Grid>
+        </Border>
 
-        </Grid>
-    </ScrollView>
+        <!-- Client column -->
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource GroupBoxBorder}">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                <!-- Ligne 0 : titre -->
+                <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
+
+                <!-- Ligne 1 : contenu principal -->
+                <VerticalStackLayout Spacing="10" Grid.Row="1">
+                    <Entry Placeholder="Topic"/>
+                    <Entry Placeholder="Payload"/>
+                </VerticalStackLayout>
+
+                <!-- Ligne 2 : boutons toujours en bas -->
+                <VerticalStackLayout Spacing="10" Grid.Row="2">
+                    <Button Text="Connect" HorizontalOptions="Fill"/>
+                    <Button Text="Publish" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <!-- Intercepted messages (row 1, spanning 2 columns) -->
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                <!-- Titre -->
+                <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
+
+                <!-- CollectionView qui s’adapte -->
+                <CollectionView Grid.Row="1" ItemsSource="{Binding BrokerMessages}" VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Bouton toujours en bas -->
+                <Button Grid.Row="2"
+                        Text="Clear Messages"
+                        Command="{Binding ClearBrokerMessagesCommand}" 
+                        HorizontalOptions="Fill"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                <!-- Titre -->
+                <Label Text="Broker Events"
+            FontSize="20"
+            FontAttributes="Bold"
+            Grid.Row="0"/>
+
+                <!-- CollectionView qui s’adapte -->
+                <CollectionView Grid.Row="1"
+                    ItemsSource="{Binding BrokerEvents}"
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Bouton toujours en bas -->
+                <Button Grid.Row="2"
+            Text="Clear Events"
+            Command="{Binding ClearBrokerEventsCommand}" 
+            HorizontalOptions="Fill"/>
+            </Grid>
+        </Border>
+
+    </Grid>
 </ContentPage>
