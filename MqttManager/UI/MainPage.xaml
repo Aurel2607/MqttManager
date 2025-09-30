@@ -3,6 +3,18 @@
              x:Class="MqttManager.MainPage"
              Title="MQTT Manager">
 
+    <!-- Border Ressources -->
+    <ContentPage.Resources>
+        <Style TargetType="Border" x:Key="GroupBoxBorder">
+            <Setter Property="Stroke" Value="Gray"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+    </ContentPage.Resources>
+
+    
     <ScrollView>
         <Grid ColumnSpacing="20" RowSpacing="10" Padding="20">
             <Grid.ColumnDefinitions>
@@ -17,47 +29,55 @@
 
             <!-- Section Serveur -->
             <!-- Broker column -->
-            <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10">
-                <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold"/>
-                <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
-                <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
-                <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
-                <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
-            </VerticalStackLayout>
-
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GroupBoxBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold"/>
+                    <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
+                    <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
+                    <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
+                    <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
+            
             <!-- Client column -->
-            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="10">
-                <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold"/>
-                <Entry Placeholder="Topic"/>
-                <Entry Placeholder="Payload"/>
-                <Button Text="Connect" HorizontalOptions="Fill"/>
-                <Button Text="Publish" HorizontalOptions="Fill"/>
-            </VerticalStackLayout>
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource GroupBoxBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold"/>
+                    <Entry Placeholder="Topic"/>
+                    <Entry Placeholder="Payload"/>
+                    <Button Text="Connect" HorizontalOptions="Fill"/>
+                    <Button Text="Publish" HorizontalOptions="Fill"/>
+                </VerticalStackLayout>
+            </Border>
 
             <!-- Intercepted messages (row 1, spanning 2 columns) -->
-            <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
-                <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold"/>
-                <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200" VerticalOptions="FillAndExpand">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Text="{Binding}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <Button Text="Clear Messages" Command="{Binding ClearBrokerMessagesCommand}" />
-            </VerticalStackLayout>
-            
-            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10">
-                <Label Text="Broker Events" FontSize="20" FontAttributes="Bold"/>
-                <CollectionView ItemsSource="{Binding BrokerEvents}" HeightRequest="200" VerticalOptions="FillAndExpand">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Text="{Binding}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <Button Text="Clear Events" Command="{Binding ClearBrokerEventsCommand}" />
-            </VerticalStackLayout>
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Broker Intercepted Messages" FontSize="20" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding BrokerMessages}" HeightRequest="200" VerticalOptions="FillAndExpand">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Clear Messages" Command="{Binding ClearBrokerMessagesCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource GroupBoxBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Broker Events" FontSize="20" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding BrokerEvents}" HeightRequest="200" VerticalOptions="FillAndExpand">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Clear Events" Command="{Binding ClearBrokerEventsCommand}" />
+                </VerticalStackLayout>
+            </Border>
 
         </Grid>
     </ScrollView>
