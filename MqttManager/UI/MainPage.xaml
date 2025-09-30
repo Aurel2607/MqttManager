@@ -30,24 +30,42 @@
             <!-- Section Serveur -->
             <!-- Broker column -->
             <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GroupBoxBorder}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold"/>
-                    <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
-                    <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
-                    <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
-                    <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
-                </VerticalStackLayout>
+                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                    <!-- Ligne 0 : titre -->
+                    <Label Text="MQTT Broker" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
+
+                    <!-- Ligne 1 : contenu principal -->
+                    <VerticalStackLayout Spacing="10" Grid.Row="1">
+                        <Entry Text="{Binding BrokerPort}" Placeholder="Port"/>
+                        <Label Text="{Binding BrokerStatus}" FontAttributes="Italic"/>
+                    </VerticalStackLayout>
+
+                    <!-- Ligne 2 : boutons toujours en bas -->
+                    <VerticalStackLayout Spacing="10" Grid.Row="2">
+                        <Button Text="Start Broker" Command="{Binding StartBrokerCommand}" HorizontalOptions="Fill"/>
+                        <Button Text="Stop Broker" Command="{Binding StopBrokerCommand}" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Grid>
             </Border>
-            
+
             <!-- Client column -->
             <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource GroupBoxBorder}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold"/>
-                    <Entry Placeholder="Topic"/>
-                    <Entry Placeholder="Payload"/>
-                    <Button Text="Connect" HorizontalOptions="Fill"/>
-                    <Button Text="Publish" HorizontalOptions="Fill"/>
-                </VerticalStackLayout>
+                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+                    <!-- Ligne 0 : titre -->
+                    <Label Text="MQTT Client" FontSize="20" FontAttributes="Bold" Grid.Row="0"/>
+
+                    <!-- Ligne 1 : contenu principal -->
+                    <VerticalStackLayout Spacing="10" Grid.Row="1">
+                        <Entry Placeholder="Topic"/>
+                        <Entry Placeholder="Payload"/>
+                    </VerticalStackLayout>
+
+                    <!-- Ligne 2 : boutons toujours en bas -->
+                    <VerticalStackLayout Spacing="10" Grid.Row="2">
+                        <Button Text="Connect" HorizontalOptions="Fill"/>
+                        <Button Text="Publish" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Grid>
             </Border>
 
             <!-- Intercepted messages (row 1, spanning 2 columns) -->
